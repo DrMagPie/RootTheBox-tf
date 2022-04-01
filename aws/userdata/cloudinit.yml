@@ -1,0 +1,61 @@
+#cloud-config
+
+preserve_hostname: true
+package_update: true
+package_upgrade: true
+apt:
+  add_apt_repo_match: 'universe'
+packages:
+  - git
+  - software-properties-common
+  - build-essential
+  - zlib1g-dev
+  - memcached
+  - rustc
+  - python3-pip
+  - python3-dev
+  - python3-mysqldb
+  - python3-mysqldb-dbg
+  - python3-pycurl
+  - sqlite3
+  - libsqlite3-dev
+  - default-libmysqlclient-dev
+  - nginx
+  - fish
+  - neovim
+snap:
+  commands:
+    - snap install core
+    - snap refresh core
+    - snap install --classic certbot
+ssh_authorized_keys:
+  - sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBFx0x3qseNm+50wqYGfdQ2rwZoDR5tm14YZ5IrBExUcixFEGqeskgVNj7at6UM/KE7Hv0tmHK9HI4C+UR3frBtsAAAAIc3NoOvCfk7E= ssh:📱
+  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDlovJ5cYBPD/vbqlkPrVsgWdTDXIsRopVT92IYW7BkI37VlgCmMQiMeXOiTQIVhzAmOAMpBCxKhFtNWriInV3D6Aq30+0/1u4hJIkOiB/TCoLgiM3vLBJJhZFmF15O+y5V72gehXCxtKKgKAko/1wlRe6uF1G8j1PHv1240wKiAkd2mDdy/lTG76jw6kIfNMAemeFokYedh/7SzG0Nm525VlwCLuyaYyrXeB4E1xL0U6iiAPjIffbk01hdJexeP3UoA2219/WcQtb6vKp6TRbBDVa8KW0g3eJe3P2vOfl3yNDlzitdk2ofHgPAKrl8WHfGrMeJQurMOm4GYN31EQar
+write_files:
+  - path: /etc/systemd/system/rtb.service
+    owner: root:root
+    permissions: "0644"
+    encoding: b64
+    content: |
+      ${SERVICE}
+  - path: /opt/bkp
+    owner: root:root
+    permissions: "0755"
+    encoding: b64
+    content: |
+      ${BKP}
+  - path: /etc/nginx/nginx.conf
+    owner: root:root
+    permissions: "0644"
+    encoding: b64
+    content: |
+      ${NGINX_CONF}
+  - path: /etc/nginx/sites-enabled/RootTheBox.conf
+    owner: root:root
+    permissions: "0644"
+    encoding: b64
+    content: |
+      ${RTB_NGINX}
+# runcmd:
+#   - ["bash", "-c", "systemctl daemon-reload"]
+# output: { all: "| tee -a /var/log/cloud-init-output.log" }
