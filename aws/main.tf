@@ -69,6 +69,12 @@ resource "aws_instance" "server" {
   vpc_security_group_ids      = [aws_security_group.server.id]
   user_data                   = data.template_cloudinit_config.user_data.rendered
   iam_instance_profile        = aws_iam_instance_profile.profile.name
+  hibernation                 = false
+  security_groups             = [aws_security_group.server.name]
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+
 
   tags = { Name = "ec2.${var.application}.${var.environment}" }
 }

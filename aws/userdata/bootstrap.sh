@@ -18,6 +18,7 @@ chmod +x ./setup/depends.sh && DEBIAN_FRONTEND=noninteractive ./setup/depends.sh
 
 echo "[*] Setup Permissions..."
 chown ubuntu:ubuntu -R /opt/RootTheBox
+chmod +x /opt/RootTheBox/rootthebox.py
 
 echo "[*] Setup System D..."
 systemctl enable rtb
