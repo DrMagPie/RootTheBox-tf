@@ -5,7 +5,6 @@ provider "aws" {
       Application = var.application
       Environment = var.environment
       Project     = var.project
-      Owner       = var.owner
     }
   }
 }
