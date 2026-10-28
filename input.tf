@@ -37,7 +37,7 @@ variable "aws_hosted_zone" {
 variable "aws_instance_type" {
   description = "AWS Hosted Zone"
   type        = string
-  default     = "t3.small"
+  default     = "t3.nano"
 }
 
 
