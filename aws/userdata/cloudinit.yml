@@ -4,7 +4,7 @@ preserve_hostname: true
 package_update: true
 package_upgrade: true
 apt:
-  add_apt_repo_match: 'universe'
+  add_apt_repo_match: "universe"
 packages:
   - git
   - software-properties-common
@@ -31,6 +31,7 @@ snap:
 ssh_authorized_keys:
   - sk-ecdsa-sha2-nistp256@openssh.com AAAAInNrLWVjZHNhLXNoYTItbmlzdHAyNTZAb3BlbnNzaC5jb20AAAAIbmlzdHAyNTYAAABBBFx0x3qseNm+50wqYGfdQ2rwZoDR5tm14YZ5IrBExUcixFEGqeskgVNj7at6UM/KE7Hv0tmHK9HI4C+UR3frBtsAAAAIc3NoOvCfk7E= ssh:📱
   - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDlovJ5cYBPD/vbqlkPrVsgWdTDXIsRopVT92IYW7BkI37VlgCmMQiMeXOiTQIVhzAmOAMpBCxKhFtNWriInV3D6Aq30+0/1u4hJIkOiB/TCoLgiM3vLBJJhZFmF15O+y5V72gehXCxtKKgKAko/1wlRe6uF1G8j1PHv1240wKiAkd2mDdy/lTG76jw6kIfNMAemeFokYedh/7SzG0Nm525VlwCLuyaYyrXeB4E1xL0U6iiAPjIffbk01hdJexeP3UoA2219/WcQtb6vKp6TRbBDVa8KW0g3eJe3P2vOfl3yNDlzitdk2ofHgPAKrl8WHfGrMeJQurMOm4GYN31EQar
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICYycDVwAK8ZTMk9pGlUJ8d1eK+Rc9eULII8e39AoVRm dm3@LVAGPLTP5340
 write_files:
   - path: /etc/systemd/system/rtb.service
     owner: root:root
@@ -56,6 +57,7 @@ write_files:
     encoding: b64
     content: |
       ${RTB_NGINX}
+
 # runcmd:
 #   - ["bash", "-c", "systemctl daemon-reload"]
 # output: { all: "| tee -a /var/log/cloud-init-output.log" }
